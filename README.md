@@ -2,6 +2,8 @@
 
 <h4 align="center">
 
+[Yuchen Lin<sup>*</sup>](https://wgsxm.github.io), [Chenguo Lin<sup>*</sup>](https://chenguolin.github.io), [Panwang Pan<sup>†</sup>](https://paulpanwang.github.io), [Honglei Yan](https://openreview.net/profile?id=~Honglei_Yan1), [Yiqiang Feng](https://openreview.net/profile?id=~Feng_Yiqiang1), [Yadong Mu](http://www.muyadong.com), [Katerina Fragkiadaki](https://www.cs.cmu.edu/~katef/)
+
 [![arXiv](https://img.shields.io/badge/arXiv-2506.05573-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2506.05573)
 [![Project page](https://img.shields.io/badge/Project-Page-brightgreen)](https://wgsxm.github.io/projects/partcrafter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
