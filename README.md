@@ -24,24 +24,26 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 ## 📢 News
 - **2025-06-09**: PartCrafter is on arXiv. 
 
+
 ## 📋 TODO
-- [ ] Provide an HuggingFace🤗 demo. 
-- [ ] Release inference scripts and pretrained checkpoints. 
-- [ ] Release training code and data. 
+- [ ] Release inference scripts and pretrained checkpoints before July 15th.
+- [ ] Release training code and data.
+- [ ] Provide a HuggingFace🤗 demo.
+
 
 ## 😊 Acknowledgement
-We would like to thank the authors of [TripoSG](https://yg256li.github.io/TripoSG-Page/), [HoloPart](https://vast-ai-research.github.io/HoloPart/), and [MIDI-3D](https://huanngzh.github.io/MIDI-Page/) 
+We would like to thank the authors of [DiffSplat](https://github.com/chenguolin/DiffSplat), [TripoSG](https://yg256li.github.io/TripoSG-Page/), [HoloPart](https://vast-ai-research.github.io/HoloPart/), and [MIDI-3D](https://huanngzh.github.io/MIDI-Page/) 
 for their great work and generously providing source codes, which inspired our work and helped us a lot in the implementation. 
 
 
 ## 📚 Citation
 If you find our work helpful, please consider citing:
 ```bibtex
-@misc{lin2025partcrafterstructured3dmesh,
+@misc{lin2025partcrafter,
   title={PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers}, 
   author={Yuchen Lin and Chenguo Lin and Panwang Pan and Honglei Yan and Yiqiang Feng and Yadong Mu and Katerina Fragkiadaki},
   year={2025},
   eprint={2506.05573},
-  url={https://arxiv.org/abs/2506.05573}, 
+  url={https://arxiv.org/abs/2506.05573}
 }
 ```
