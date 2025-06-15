@@ -26,7 +26,7 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 
 
 ## 📋 TODO
-- [ ] Release inference scripts and pretrained checkpoints before July 15th. Stay tuned!
+- [ ] Release inference scripts and pretrained checkpoints before **July 15th.** Stay tuned!
 - [ ] Release training code and data.
 - [ ] Provide a HuggingFace🤗 demo.
 
