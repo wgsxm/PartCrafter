@@ -8,6 +8,10 @@
 [![Project page](https://img.shields.io/badge/Project-Page-brightgreen)](https://wgsxm.github.io/projects/partcrafter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
 
+<h2 align="center">
+Code and checkpoints will be released before July 15th!
+</h2>
+
 <p>
     <img width="90%" alt="pipeline", src="./assets/teaser.png">
 </p>
