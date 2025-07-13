@@ -1,4 +1,6 @@
-# Copyright (c) 2025 VAST-AI-Research and contributors
+# Copyright (c) 2025 Yuchen Lin
+
+# This code is based on TripoSG (https://github.com/VAST-AI-Research/TripoSG). Below is the statement from the original repository:
 
 # This code is based on Tencent HunyuanDiT (https://huggingface.co/Tencent-Hunyuan/HunyuanDiT),
 # which is licensed under the Tencent Hunyuan Community License Agreement.
