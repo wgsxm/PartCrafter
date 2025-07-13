@@ -6,6 +6,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2506.05573-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2506.05573)
 [![Project Page](https://img.shields.io/badge/🏠-Project%20Page-blue.svg)](https://wgsxm.github.io/projects/partcrafter)
+[<img src="https://img.shields.io/badge/YouTube-Watch-red" alt="YouTube">](https://www.youtube.com/watch?v=ZaZHbkkPtXY)
 [![Model](https://img.shields.io/badge/🤗%20Model-PartCrafter-yellow.svg)](https://huggingface.co/wgsxm/PartCrafter)
 [![License: MIT](https://img.shields.io/badge/📄%20License-MIT-green)](./LICENSE)
 
