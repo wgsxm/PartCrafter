@@ -59,7 +59,9 @@ conda install -c conda-forge libegl libglu pyopengl
 
 Generate a 3D part-level object from an image:
 ```
-python scripts/inference_partcrafter.py --image_path assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png --num_parts 3 --tag robot --render
+python scripts/inference_partcrafter.py \
+  --image_path assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png \
+  --num_parts 3 --tag robot --render
 ```
 The required model weights will be automatically downloaded:
 - PartCrafter model from [wgsxm/PartCrafter](https://huggingface.co/wgsxm/PartCrafter) → pretrained_weights/PartCrafter
@@ -94,29 +96,29 @@ If you use `wandb`, you should also modify the `WANDB_API_KEY` in the training s
 Train PartCrafter from TripoSG:
 ```
 bash scripts/train_partcrafter.sh --config configs/mp8_nt512.yaml --use_ema \
---gradient_accumulation_steps 4 \
---output_dir output_partcrafter \
---tag scaleup_mp8_nt512
+  --gradient_accumulation_steps 4 \
+  --output_dir output_partcrafter \
+  --tag scaleup_mp8_nt512
 ```
 
 Finetune PartCrafter with larger number of parts:
 ```
 bash scripts/train_partcrafter.sh --config configs/mp16_nt512.yaml --use_ema \
---gradient_accumulation_steps 4 \
---output_dir output_partcrafter \
---load_pretrained_model scaleup_mp8_nt512 \
---load_pretrained_model_ckpt 10 \
---tag scaleup_mp16_nt512
+  --gradient_accumulation_steps 4 \
+  --output_dir output_partcrafter \
+  --load_pretrained_model scaleup_mp8_nt512 \
+  --load_pretrained_model_ckpt 10 \
+  --tag scaleup_mp16_nt512
 ```
 
 Finetune PartCrafter with more tokens:
 ```
 bash scripts/train_partcrafter.sh --config configs/mp16_nt1024.yaml --use_ema \
---gradient_accumulation_steps 4 \
---output_dir output_partcrafter \
---load_pretrained_model scaleup_mp16_nt512 \
---load_pretrained_model_ckpt 10 \
---tag scaleup_mp16_nt1024
+  --gradient_accumulation_steps 4 \
+  --output_dir output_partcrafter \
+  --load_pretrained_model scaleup_mp16_nt512 \
+  --load_pretrained_model_ckpt 10 \
+  --tag scaleup_mp16_nt1024
 ```
 
 ## 😊 Acknowledgement
