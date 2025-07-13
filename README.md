@@ -1,6 +1,4 @@
-<h1 align="center">
-PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers
-</h1>
+# PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers
 
 <h4 align="center">
 
@@ -122,7 +120,7 @@ bash scripts/train_partcrafter.sh --config configs/mp16_nt1024.yaml --use_ema \
 ```
 
 ## 😊 Acknowledgement
-We would like to thank the authors of [DiffSplat](https://github.com/chenguolin/DiffSplat), [TripoSG](https://yg256li.github.io/TripoSG-Page/), [HoloPart](https://vast-ai-research.github.io/HoloPart/), and [MIDI-3D](https://huanngzh.github.io/MIDI-Page/) 
+We would like to thank the authors of [DiffSplat](https://chenguolin.github.io/projects/DiffSplat/), [TripoSG](https://yg256li.github.io/TripoSG-Page/), [HoloPart](https://vast-ai-research.github.io/HoloPart/), and [MIDI-3D](https://huanngzh.github.io/MIDI-Page/) 
 for their great work and generously providing source codes, which inspired our work and helped us a lot in the implementation. 
 
 
