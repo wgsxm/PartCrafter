@@ -54,7 +54,7 @@ def run_triposg(
     print(f"Time elapsed: {end_time - start_time:.2f} seconds")
     for i in range(len(outputs)):
         if outputs[i] is None:
-            # If the generated mesh is None (decoing error), use a dummy mesh
+            # If the generated mesh is None (decoding error), use a dummy mesh
             outputs[i] = trimesh.Trimesh(vertices=[[0, 0, 0]], faces=[[0, 0, 0]])
     return outputs, img_pil
 
