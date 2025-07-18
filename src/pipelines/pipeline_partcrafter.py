@@ -16,7 +16,7 @@ from transformers import (
     BitImageProcessor,
     Dinov2Model,
 )
-from ..utils.inference_utils import hierarchical_extract_geometry, flash_extract_geometry
+from ..utils.inference_utils import hierarchical_extract_geometry
 
 from ..models.autoencoders import TripoSGVAEModel
 from ..models.transformers import PartCrafterDiTModel
