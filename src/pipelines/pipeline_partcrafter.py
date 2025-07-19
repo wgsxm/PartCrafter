@@ -244,9 +244,7 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
 
         # 6. Denoising loop
         self.set_progress_bar_config(
-            desc="Denoising", 
-            ncols=125,
-            disable=self._progress_bar_config['disable'] if hasattr(self, '_progress_bar_config') else False,
+            disable=True,
         )
         with self.progress_bar(total=len(timesteps)) as progress_bar:
             for i, t in enumerate(timesteps):
@@ -313,18 +311,21 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
                     (i + 1) > num_warmup_steps and (i + 1) % self.scheduler.order == 0
                 ):
                     progress_bar.update()
+                
+                print(f"Denoising: {i + 1}/{len(timesteps)}")
+        
+        print()
 
 
         # 7. decoder mesh
         self.vae.set_flash_decoder()
         output, meshes = [], []
         self.set_progress_bar_config(
-            desc="Decoding", 
-            ncols=125,
-            disable=self._progress_bar_config['disable'] if hasattr(self, '_progress_bar_config') else False,
+            disable=True,
         )
         with self.progress_bar(total=batch_size) as progress_bar:
             for i in range(batch_size):
+                print(f"Decoding: {i + 1}/{batch_size}")
                 geometric_func = lambda x: self.vae.decode(latents[i].unsqueeze(0), sampled_points=x).sample
                 try:
                     mesh_v_f = hierarchical_extract_geometry(
@@ -344,6 +345,7 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
                 output.append(mesh_v_f)
                 meshes.append(mesh)
                 progress_bar.update()
+        print()
        
         # Offload all models
         self.maybe_free_model_hooks()
