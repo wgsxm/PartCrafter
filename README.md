@@ -34,9 +34,9 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 - [ ] Release preprocessed dataset. 
 
 ## 🔧 Installation
-Go to the project root directory:
+Go to the project root directory, make and activate venv:
 ```
-python -m venv venv (activate venv)
+python -m venv venv
 ```
 From venv:
 ```
