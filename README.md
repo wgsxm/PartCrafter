@@ -33,7 +33,7 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 - [ ] Provide a HuggingFace🤗 demo.
 - [ ] Release preprocessed dataset. 
 
-## 🔧 Installation
+## 🔧 Installation on Windows
 Go to the project root directory, make and activate venv:
 ```
 python -m venv venv
