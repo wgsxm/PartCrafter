@@ -35,14 +35,20 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 
 ## 🔧 Installation
 Go to the project root directory:
+```
 python -m venv venv (activate venv)
+```
 From venv:
+```
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 pip install -r requirements.txt
 pip install deepspeed-0.17.2+a0bb346-py3-none-any.whl
 pip install torch_cluster-1.6.3+pt27cu128-cp311-cp311-win_amd64.whl
+```
 Example startup args (models download automaticall)
+```
 python inference_partcrafter.py --image_path assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png --num_parts 3 --tag robot
+```
 ## 😊 Acknowledgement
 We would like to thank the authors of [DiffSplat](https://chenguolin.github.io/projects/DiffSplat/), [TripoSG](https://yg256li.github.io/TripoSG-Page/), [HoloPart](https://vast-ai-research.github.io/HoloPart/), and [MIDI-3D](https://huanngzh.github.io/MIDI-Page/) 
 for their great work and generously providing source codes, which inspired our work and helped us a lot in the implementation. 
