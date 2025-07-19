@@ -1,4 +1,4 @@
-# PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers
+# PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers for Windows
 
 <h4 align="center">
 
