@@ -312,10 +312,9 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
                 ):
                     progress_bar.update()
                 
-                print(f"Denoising: {i + 1}/{len(timesteps)}")
-        
+                print(f"Denoising: {i + 1}/{len(timesteps)}", end="\r")
+                
         print()
-
 
         # 7. decoder mesh
         self.vae.set_flash_decoder()
@@ -325,7 +324,7 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
         )
         with self.progress_bar(total=batch_size) as progress_bar:
             for i in range(batch_size):
-                print(f"Decoding: {i + 1}/{batch_size}")
+                print(f"Decoding: {i + 1}/{batch_size}", end="\r")
                 geometric_func = lambda x: self.vae.decode(latents[i].unsqueeze(0), sampled_points=x).sample
                 try:
                     mesh_v_f = hierarchical_extract_geometry(
@@ -346,7 +345,7 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
                 meshes.append(mesh)
                 progress_bar.update()
         print()
-       
+                
         # Offload all models
         self.maybe_free_model_hooks()
 
@@ -354,4 +353,3 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
             return (output, meshes)
 
         return PartCrafterPipelineOutput(samples=output, meshes=meshes)
-
