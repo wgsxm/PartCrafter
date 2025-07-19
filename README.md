@@ -45,7 +45,7 @@ pip install -r requirements.txt
 pip install deepspeed-0.17.2+a0bb346-py3-none-any.whl
 pip install torch_cluster-1.6.3+pt27cu128-cp311-cp311-win_amd64.whl
 ```
-Example startup args (models download automaticall)
+Example startup args (models download automatically)
 ```
 python inference_partcrafter.py --image_path assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png --num_parts 3 --tag robot
 ```
