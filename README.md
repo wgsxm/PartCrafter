@@ -24,6 +24,7 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 
 
 ## 📢 News
+- **2025-07-20**: A guide for installing PartCrafter on Windows is available in [this fork](https://github.com/JackDainzh/PartCrafter-Windows/tree/windows-main). Thanks to [JackDainzh](https://github.com/JackDainzh)!
 - **2025-07-13**: PartCrafter is fully open-sourced 🚀.
 - **2025-06-09**: PartCrafter is on arXiv. 
 
@@ -50,6 +51,7 @@ If you do not have root access and use conda environment, you can install requir
 ```
 conda install -c conda-forge libegl libglu pyopengl
 ```
+We test the above installation on Debian 12 with NVIDIA H20 GPUs. For Windows users, you can try to set up the environment according to [this pull request](https://github.com/wgsxm/PartCrafter/pull/24) and [this fork](https://github.com/JackDainzh/PartCrafter-Windows/tree/windows-main). We sincerely thank [JackDainzh](https://github.com/JackDainzh) for contributing to the Windows support! 
 
 ## 💡 Quick Start
 <p align="center">
