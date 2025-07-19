@@ -16,8 +16,8 @@
 
 </h4>
 
-This repository contains the official implementation of the paper: [PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers](https://wgsxm.github.io/projects/partcrafter/). 
-PartCrafter is a structured 3D generative model that jointly generates multiple parts and objects from a single RGB image in one shot. 
+This fork contains the official implementation of the paper: [PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers](https://wgsxm.github.io/projects/partcrafter/). 
+PartCrafter is a structured 3D generative model that jointly generates multiple parts and objects from a single RGB image in one shot setup for dirty use on Windows. 
 Here is our [Project Page](https://wgsxm.github.io/projects/partcrafter).
 
 Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have any questions or suggestions.
