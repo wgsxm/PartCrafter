@@ -34,92 +34,15 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 - [ ] Release preprocessed dataset. 
 
 ## 🔧 Installation
-We use `torch-2.5.1+cu124` and `python-3.11`. But it should also work with other versions. Create a conda environment with the following command (optional):
-```
-conda create -n partcrafter python=3.11.13
-conda activate partcrafter
-pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124
-```
-Then, install other dependencies with the following command:
-```
-git clone https://github.com/wgsxm/PartCrafter.git
-cd PartCrafter
-bash settings/setup.sh
-```
-If you do not have root access and use conda environment, you can install required graphics libraries with the following command:
-```
-conda install -c conda-forge libegl libglu pyopengl
-```
-
-## 💡 Quick Start
-<p align="center">
-    <img width="90%" alt="pipeline", src="./assets/robot.gif">
-</p>
-
-Generate a 3D part-level object from an image:
-```
-python scripts/inference_partcrafter.py \
-  --image_path assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png \
-  --num_parts 3 --tag robot --render
-```
-The required model weights will be automatically downloaded:
-- PartCrafter model from [wgsxm/PartCrafter](https://huggingface.co/wgsxm/PartCrafter) → pretrained_weights/PartCrafter
-- RMBG model from [briaai/RMBG-1.4](http://huggingface.co/briaai/RMBG-1.4) → pretrained_weights/RMBG-1.4
-
-The generated results will be saved to `./results/robot`. We provide several example images from Objaverse and ABO in `./assets/images`. Their filenames start with recommended number of parts, e.g., `np3` which means 3 parts. You can also try other part count for the same input images. 
-
-Specify `--rmbg` if you use custom images. **This will remove the background of the input image and resize it appropriately.**
-
-## 💻 System Requirements
-A CUDA-enabled GPU with at least 8GB VRAM. You can reduce number of parts or number of tokens to save GPU memory. We set the number of tokens per part to `1024` by default for better quality. 
-
-## 📊 Dataset
-Please refer to [Dataset README](./datasets/README.md) to download and preprocess the dataset. To generate a minimal dataset, you can run:
-```
-python datasets/preprocess/preprocess.py --input assets/objects --output preprocessed_data
-```
-This script preprocesses GLB files in `./assets/objects` and saves the preprocessed data to `./preprocessed_data`. We provide a pseudo data configuration [here](./datasets/object_part_configs.json), which makes use of the minimal preprocessed data and is compatible with the training settings.
-
-## 🦾 Training
-To train PartCrafter from scratch, you first need to download TripoSG from [VAST-AI/TripoSG](https://huggingface.co/VAST-AI/TripoSG) and store the weights in `./pretrained_models/TripoSG`. 
-```
-huggingface-cli download VAST-AI/TripoSG --local-dir pretrained_weights/TripoSG
-```
-
-Our training scripts are suitable for training with 8 H20 GPUs (96G VRAM each). Currently, we only finetune the DiT of TripoSG and keep the VAE fixed. But you can also finetune the VAE of TripoSG, which should improve the quality of the generated 3D parts. PartCrafter is compatible with all 3D object generative models based on vector sets such as [Hunyuan3D-2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1). We warmly welcome pull requests from the community. 
-
-We provide several training configurations [here](./configs). You should modify the path of dataset configs in the training config files, which is currently set to `./datasets/object_part_configs.json`. 
-
-If you use `wandb`, you should also modify the `WANDB_API_KEY` in the training script. If you have trouble connecting to `wandb`, try `export WANDB_BASE_URL=https://api.bandw.top`. 
-
-Train PartCrafter from TripoSG:
-```
-bash scripts/train_partcrafter.sh --config configs/mp8_nt512.yaml --use_ema \
-  --gradient_accumulation_steps 4 \
-  --output_dir output_partcrafter \
-  --tag scaleup_mp8_nt512
-```
-
-Finetune PartCrafter with larger number of parts:
-```
-bash scripts/train_partcrafter.sh --config configs/mp16_nt512.yaml --use_ema \
-  --gradient_accumulation_steps 4 \
-  --output_dir output_partcrafter \
-  --load_pretrained_model scaleup_mp8_nt512 \
-  --load_pretrained_model_ckpt 10 \
-  --tag scaleup_mp16_nt512
-```
-
-Finetune PartCrafter with more tokens:
-```
-bash scripts/train_partcrafter.sh --config configs/mp16_nt1024.yaml --use_ema \
-  --gradient_accumulation_steps 4 \
-  --output_dir output_partcrafter \
-  --load_pretrained_model scaleup_mp16_nt512 \
-  --load_pretrained_model_ckpt 10 \
-  --tag scaleup_mp16_nt1024
-```
-
+Go to the project root directory:
+python -m venv venv (activate venv)
+From venv:
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+pip install -r requirements.txt
+pip install deepspeed-0.17.2+a0bb346-py3-none-any.whl
+pip install torch_cluster-1.6.3+pt27cu128-cp311-cp311-win_amd64.whl
+Example startup args (models download automaticall)
+python inference_partcrafter.py --image_path assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png --num_parts 3 --tag robot
 ## 😊 Acknowledgement
 We would like to thank the authors of [DiffSplat](https://chenguolin.github.io/projects/DiffSplat/), [TripoSG](https://yg256li.github.io/TripoSG-Page/), [HoloPart](https://vast-ai-research.github.io/HoloPart/), and [MIDI-3D](https://huanngzh.github.io/MIDI-Page/) 
 for their great work and generously providing source codes, which inspired our work and helped us a lot in the implementation. 
