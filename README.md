@@ -37,6 +37,8 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 Go to the project root directory, make and activate venv:
 ```
 python -m venv venv
+cd venv/Scripts
+activate
 ```
 From venv:
 ```
