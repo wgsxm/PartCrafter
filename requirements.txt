@@ -18,3 +18,4 @@ imageio-ffmpeg
 pyrender
 wandb[media]
 colormaps
+gradio==5.35.0
