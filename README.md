@@ -90,7 +90,7 @@ python scripts/inference_partcrafter_scene.py \
 The required model weights will be automatically downloaded:
 - PartCrafter-Scene model from [wgsxm/PartCrafter-Scene](https://huggingface.co/wgsxm/PartCrafter-Scene) → pretrained_weights/PartCrafter-Scene
 
-The generated results will be saved to `./results/dining_room`. We provide several example images 3D-Front in `./assets/images_scene`. Their filenames start with recommended number of parts, e.g., `np3` which means 3 parts. You can also try other part count for the same input images. 
+The generated results will be saved to `./results/dining_room`. We provide several example images from 3D-Front in `./assets/images_scene`. Their filenames start with recommended number of parts, e.g., `np3` which means 3 parts. You can also try other part count for the same input images. 
 
 ## 💻 System Requirements
 A CUDA-enabled GPU with at least 8GB VRAM. You can reduce number of parts or number of tokens to save GPU memory. We set the number of tokens per part to `1024` on object level and `2048` on scene level by default for better quality. 
