@@ -8,6 +8,7 @@
 [![Project Page](https://img.shields.io/badge/🏠-Project%20Page-blue.svg)](https://wgsxm.github.io/projects/partcrafter)
 [<img src="https://img.shields.io/badge/YouTube-Video-red" alt="YouTube">](https://www.youtube.com/watch?v=ZaZHbkkPtXY)
 [![Model](https://img.shields.io/badge/🤗%20Model-PartCrafter-yellow.svg)](https://huggingface.co/wgsxm/PartCrafter)
+[![Model](https://img.shields.io/badge/🤗%20Model-PartCrafter--Scene-yellow.svg)](https://huggingface.co/wgsxm/PartCrafter-Scene)
 [![License: MIT](https://img.shields.io/badge/📄%20License-MIT-green)](./LICENSE)
 
 <p align="center">
@@ -24,13 +25,15 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 
 
 ## 📢 News
+- **2025-07-23**: The 3D scene version of PartCrafter is released, which is trained on [3D-Front](https://huggingface.co/datasets/huanngzh/3D-Front). 
 - **2025-07-20**: A guide for installing PartCrafter on Windows is available in [this fork](https://github.com/JackDainzh/PartCrafter-Windows/tree/windows-main). Thanks to [JackDainzh](https://github.com/JackDainzh)!
 - **2025-07-13**: PartCrafter is fully open-sourced 🚀.
 - **2025-06-09**: PartCrafter is on arXiv. 
 
 ## 📋 TODO
-- [x] Release inference scripts and pretrained checkpoints. 
+- [x] Release inference scripts. 
 - [x] Release training code and data preprocessing scripts. 
+- [x] Release pretrained checkpoints on both object and scene level. 
 - [ ] Provide a HuggingFace🤗 demo.
 - [ ] Release preprocessed dataset. 
 
@@ -54,6 +57,7 @@ conda install -c conda-forge libegl libglu pyopengl
 We test the above installation on Debian 12 with NVIDIA H20 GPUs. For Windows users, you can try to set up the environment according to [this pull request](https://github.com/wgsxm/PartCrafter/pull/24) and [this fork](https://github.com/JackDainzh/PartCrafter-Windows/tree/windows-main). We sincerely thank [JackDainzh](https://github.com/JackDainzh) for contributing to the Windows support! 
 
 ## 💡 Quick Start
+### 3D Part-Level Object Generation
 <p align="center">
     <img width="90%" alt="pipeline", src="./assets/robot.gif">
 </p>
@@ -72,8 +76,24 @@ The generated results will be saved to `./results/robot`. We provide several exa
 
 Specify `--rmbg` if you use custom images. **This will remove the background of the input image and resize it appropriately.**
 
+### 3D Scene Generation
+<p align="center">
+    <img width="90%" alt="pipeline", src="./assets/dining_room.gif">
+</p>
+
+Generate a 3D scene from an image:
+```
+python scripts/inference_partcrafter_scene.py \
+  --image_path assets/images_scene/np6_0192a842-531c-419a-923e-28db4add8656_DiningRoom-31158.png \
+  --num_parts 6 --tag dining_room --render
+```
+The required model weights will be automatically downloaded:
+- PartCrafter-Scene model from [wgsxm/PartCrafter-Scene](https://huggingface.co/wgsxm/PartCrafter-Scene) → pretrained_weights/PartCrafter-Scene
+
+The generated results will be saved to `./results/dining_room`. We provide several example images 3D-Front in `./assets/images_scene`. Their filenames start with recommended number of parts, e.g., `np3` which means 3 parts. You can also try other part count for the same input images. 
+
 ## 💻 System Requirements
-A CUDA-enabled GPU with at least 8GB VRAM. You can reduce number of parts or number of tokens to save GPU memory. We set the number of tokens per part to `1024` by default for better quality. 
+A CUDA-enabled GPU with at least 8GB VRAM. You can reduce number of parts or number of tokens to save GPU memory. We set the number of tokens per part to `1024` on object level and `2048` on scene level by default for better quality. 
 
 ## 📊 Dataset
 Please refer to [Dataset README](./datasets/README.md) to download and preprocess the dataset. To generate a minimal dataset, you can run:
