@@ -8,8 +8,8 @@
 [![Project Page](https://img.shields.io/badge/🏠-Project%20Page-blue.svg)](https://wgsxm.github.io/projects/partcrafter)
 [<img src="https://img.shields.io/badge/YouTube-Video-red" alt="YouTube">](https://www.youtube.com/watch?v=ZaZHbkkPtXY)
 [![Model](https://img.shields.io/badge/🤗%20Model-PartCrafter-yellow.svg)](https://huggingface.co/wgsxm/PartCrafter)
-[![Model](https://img.shields.io/badge/🤗%20Model-PartCrafter--Scene-yellow.svg)](https://huggingface.co/wgsxm/PartCrafter-Scene)
-[![License: MIT](https://img.shields.io/badge/📄%20License-MIT-green)](./LICENSE)
+[![Model-Scene](https://img.shields.io/badge/🤗%20Model-PartCrafter--Scene-yellow.svg)](https://huggingface.co/wgsxm/PartCrafter-Scene)
+[![Demo](https://img.shields.io/badge/🤗%20Demo-PartCrafter-green.svg)](https://huggingface.co/spaces/alexnasa/PartCrafter)
 
 <p align="center">
     <img width="90%" alt="pipeline", src="./assets/teaser.png">
@@ -23,8 +23,8 @@ Here is our [Project Page](https://wgsxm.github.io/projects/partcrafter).
 
 Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have any questions or suggestions.
 
-
 ## 📢 News
+- **2025-08-15**: PartCrafter HuggingFace🤗 demo is available [here](https://huggingface.co/spaces/alexnasa/PartCrafter). Thanks to [alexnasa](https://huggingface.co/alexnasa). 
 - **2025-07-23**: The 3D scene version of PartCrafter is released, which is trained on [3D-Front](https://huggingface.co/datasets/huanngzh/3D-Front). 
 - **2025-07-20**: A guide for installing PartCrafter on Windows is available in [this fork](https://github.com/JackDainzh/PartCrafter-Windows/tree/windows-main). Thanks to [JackDainzh](https://github.com/JackDainzh)!
 - **2025-07-13**: PartCrafter is fully open-sourced 🚀.
@@ -34,7 +34,7 @@ Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have 
 - [x] Release inference scripts. 
 - [x] Release training code and data preprocessing scripts. 
 - [x] Release pretrained checkpoints on both object and scene level. 
-- [ ] Provide a HuggingFace🤗 demo.
+- [x] Provide a HuggingFace🤗 demo.
 - [ ] Release preprocessed dataset. 
 
 ## 🔧 Installation
