@@ -1,5 +1,7 @@
+import glob
 import modal
 import os
+import re
 import shutil
 import subprocess
 
@@ -40,30 +42,43 @@ partcrafter_volume = modal.Volume.from_name(
 )
 def run_inference():
     repo = "/root/PartCrafter"
+    assets_dir = os.path.join(repo, "assets", "images")
     results_dir = os.path.join(repo, "results")
 
-    subprocess.run(
-        [
-            "python",
-            "scripts/inference_partcrafter.py",
-            "--image_path",
-            "assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png",
-            "--num_parts",
-            "3",
-            "--tag",
-            "robot",
-            "--render",
-        ],
-        cwd=repo,
-        check=True,
+    imgs = sorted(
+        glob.glob(os.path.join(assets_dir, "*.png"))
+        + glob.glob(os.path.join(assets_dir, "*.jpg"))
+        + glob.glob(os.path.join(assets_dir, "*.jpeg"))
     )
 
-    export_dir = "/partcrafter/results"
-    os.makedirs(export_dir, exist_ok=True)
+    if not imgs:
+        print(f"No images found in {assets_dir}")
+        return
+    else:
+        print(f"Found {len(imgs)} images")
 
+    for img in imgs:
+        base = os.path.splitext(os.path.basename(img))[0]
+        m = re.match(r"^np(\d+)_", base)
+        num_parts = m.group(1) if m else "6"
+        tag = base
+
+        cmd = [
+            "python",
+            "scripts/inference_partcrafter.py",
+            "--image_path", os.path.relpath(img, repo),
+            "--num_parts", str(num_parts),
+            "--tag", tag,
+            "--render",
+            "--rmbg",
+        ]
+
+        print("Running:", " ".join(cmd))
+        subprocess.run(cmd, cwd=repo, check=True)
+
+    export_dir = "/partcrafter/results"
     if os.path.exists(export_dir):
         shutil.rmtree(export_dir)
-
     shutil.copytree(results_dir, export_dir)
 
     print("Copied results to volume:", export_dir)
