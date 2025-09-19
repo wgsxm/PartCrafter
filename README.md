@@ -1,4 +1,4 @@
-# PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers
+# [NeurIPS 2025] PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers
 
 <h4 align="center">
 
@@ -24,6 +24,7 @@ Here is our [Project Page](https://wgsxm.github.io/projects/partcrafter).
 Feel free to contact me (linyuchen@stu.pku.edu.cn) or open an issue if you have any questions or suggestions.
 
 ## 📢 News
+- **2025-09-18**: PartCrafter is accepted to NeurIPS 2025. 
 - **2025-08-15**: PartCrafter HuggingFace🤗 demo is available [here](https://huggingface.co/spaces/alexnasa/PartCrafter). Thanks to [alexnasa](https://huggingface.co/alexnasa). 
 - **2025-07-23**: The 3D scene version of PartCrafter is released, which is trained on [3D-Front](https://huggingface.co/datasets/huanngzh/3D-Front). 
 - **2025-07-20**: A guide for installing PartCrafter on Windows is available in [this fork](https://github.com/JackDainzh/PartCrafter-Windows/tree/windows-main). Thanks to [JackDainzh](https://github.com/JackDainzh)!
