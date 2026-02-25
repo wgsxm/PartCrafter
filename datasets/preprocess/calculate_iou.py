@@ -34,7 +34,7 @@ if __name__ == '__main__':
         config['iou_list'] = iou_list
         config['iou_mean'] = np.mean(iou_list)
         config['iou_max'] = np.max(iou_list)
-    except:
+    except Exception:
         config['iou_list'] = []
         config['iou_mean'] = 0.0
         config['iou_max'] = 0.0
