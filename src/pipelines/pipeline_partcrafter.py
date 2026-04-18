@@ -338,7 +338,7 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
                         # verbose=True
                     )
                     mesh = trimesh.Trimesh(mesh_v_f[0].astype(np.float32), mesh_v_f[1])
-                except:
+                except Exception:
                     mesh_v_f = None
                     mesh = None
                 output.append(mesh_v_f)

@@ -68,7 +68,7 @@ def get_colored_mesh_composition(
         for mesh in meshes:
             try:
                 volume = mesh.volume
-            except:
+            except Exception:
                 volume = 0.0
             volumes.append(volume)
         # sort by volume from large to small

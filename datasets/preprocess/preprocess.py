@@ -61,7 +61,7 @@ if __name__ == '__main__':
             config['image_path'] = image_path
             config['valid'] = True
             configs.append(config)
-        except:
+        except Exception:
             continue
     
     configs_path = os.path.join(output_path, 'object_part_configs.json')
