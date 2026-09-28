@@ -12,7 +12,11 @@ from diffusers.models.normalization import FP32LayerNorm, LayerNorm
 from diffusers.utils import logging
 from diffusers.utils.accelerate_utils import apply_forward_hook
 from einops import repeat
-from torch_cluster import fps
+try:
+    from torch_cluster import fps
+except (ImportError, OSError):
+    # torch_cluster has no wheels for Apple Silicon (MPS); use the pure-PyTorch version there
+    from ...utils.fps_torch import fps
 from tqdm import tqdm
 
 from ..attention_processor import FusedTripoSGAttnProcessor2_0, TripoSGAttnProcessor2_0, FlashTripo2AttnProcessor2_0
@@ -158,7 +162,9 @@ class TripoSGDecoder(nn.Module):
     ):
         logits = model_fn(queries, sample)
         if grad:
-            with torch.autocast(device_type="cuda", dtype=torch.float32):
+            # torch.autocast accepts only some device types; "mps" is not one of them on every PyTorch version
+            autocast_device = queries.device.type if queries.device.type in ("cuda", "cpu") else "cpu"
+            with torch.autocast(device_type=autocast_device, dtype=torch.float32):
                 if self.grad_type == "numerical":
                     interval = self.grad_interval
                     grad_value = []

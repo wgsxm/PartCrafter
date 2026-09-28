@@ -122,7 +122,7 @@ def find_candidates_band(
     return core_mesh_coords 
 
 def expand_edge_region_fast(edge_coords, grid_size, dtype):
-    expanded_tensor = torch.zeros(grid_size, grid_size, grid_size, device='cuda', dtype=dtype, requires_grad=False)
+    expanded_tensor = torch.zeros(grid_size, grid_size, grid_size, device=edge_coords.device, dtype=dtype, requires_grad=False)
     expanded_tensor[edge_coords[:, 0], edge_coords[:, 1], edge_coords[:, 2]] = 1
     if grid_size < 512:
         kernel_size = 5

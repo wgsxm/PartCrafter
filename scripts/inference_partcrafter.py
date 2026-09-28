@@ -37,7 +37,7 @@ def run_triposg(
 ) -> trimesh.Scene:
 
     if rmbg:
-        img_pil = prepare_image(image_input, bg_color=np.array([1.0, 1.0, 1.0]), rmbg_net=rmbg_net)
+        img_pil = prepare_image(image_input, bg_color=np.array([1.0, 1.0, 1.0]), rmbg_net=rmbg_net, device=device)
     else:
         img_pil = Image.open(image_input)
     start_time = time.time()
@@ -62,8 +62,12 @@ def run_triposg(
 MAX_NUM_PARTS = 16
 
 if __name__ == "__main__":
-    device = "cuda"
-    dtype = torch.float16
+    if torch.cuda.is_available():
+        device, dtype = "cuda", torch.float16
+    elif torch.backends.mps.is_available():
+        device, dtype = "mps", torch.float16
+    else:
+        device, dtype = "cpu", torch.float32
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--image_path", type=str, required=True)

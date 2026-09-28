@@ -131,6 +131,8 @@ The `--part_suggest` and `--style_transfer` flags are also available for scene-l
 ## 💻 System Requirements
 A CUDA-enabled GPU with at least 8GB VRAM. You can reduce number of parts or number of tokens to save GPU memory. We set the number of tokens per part to `1024` on object level and `2048` on scene level by default for better quality. 
 
+Apple Silicon Macs can run inference through PyTorch's MPS backend in fp16; `scripts/inference_partcrafter.py` picks CUDA, then MPS, then CPU. torch-cluster has no macOS wheels, so skip it there: the autoencoder then uses a pure-PyTorch farthest point sampling (`src/utils/fps_torch.py`). On an M5 Pro with 48 GB the robot example above (3 parts) took 307 s.
+
 ## 📊 Dataset
 Please refer to [Dataset README](./datasets/README.md) to download and preprocess the dataset. To generate a minimal dataset, you can run:
 ```

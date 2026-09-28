@@ -316,6 +316,9 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
 
 
         # 7. decoder mesh
+        if device.type == "mps":
+            # free the denoising buffers MPS keeps cached before the memory-heavy decode
+            torch.mps.empty_cache()
         self.vae.set_flash_decoder()
         output, meshes = [], []
         self.set_progress_bar_config(
@@ -338,11 +341,14 @@ class PartCrafterPipeline(DiffusionPipeline, TransformerDiffusionMixin):
                         # verbose=True
                     )
                     mesh = trimesh.Trimesh(mesh_v_f[0].astype(np.float32), mesh_v_f[1])
-                except:
+                except Exception as e:
+                    logger.warning(f"Failed to decode part {i}: {e}")
                     mesh_v_f = None
                     mesh = None
                 output.append(mesh_v_f)
                 meshes.append(mesh)
+                if device.type == "mps":
+                    torch.mps.empty_cache()
                 progress_bar.update()
        
         # Offload all models
