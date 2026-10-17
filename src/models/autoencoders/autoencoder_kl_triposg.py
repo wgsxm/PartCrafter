@@ -12,7 +12,7 @@ from diffusers.models.normalization import FP32LayerNorm, LayerNorm
 from diffusers.utils import logging
 from diffusers.utils.accelerate_utils import apply_forward_hook
 from einops import repeat
-from torch_cluster import fps
+from ...utils.fps_utils import fps  # uses torch_cluster when installed, plain PyTorch otherwise (AMD/ROCm)
 from tqdm import tqdm
 
 from ..attention_processor import FusedTripoSGAttnProcessor2_0, TripoSGAttnProcessor2_0, FlashTripo2AttnProcessor2_0
