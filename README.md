@@ -131,6 +131,28 @@ The `--part_suggest` and `--style_transfer` flags are also available for scene-l
 ## 💻 System Requirements
 A CUDA-enabled GPU with at least 8GB VRAM. You can reduce number of parts or number of tokens to save GPU memory. We set the number of tokens per part to `1024` on object level and `2048` on scene level by default for better quality. 
 
+### Running on AMD GPUs (ROCm)
+
+I wanted part-level generation on my own machine, which has an AMD card, and the only thing stopping it was `torch-cluster`. PartCrafter uses exactly one function from it, `fps` (farthest point sampling in the VAE), and `torch-cluster` only ships CUDA builds. So `src/utils/fps_utils.py` now uses `torch-cluster` when it is installed and falls back to a small plain PyTorch version when it is not. NVIDIA setups behave exactly as before. On AMD (and anything else without `torch-cluster`) you just skip that install line.
+
+What I tested it on:
+
+- GPU: Radeon RX 6700 XT, 12 GB (gfx1031, run as gfx1030)
+- OS: Nobara 44 (Fedora based), ROCm 7.1
+- PyTorch 2.10 for ROCm, Python 3.12
+- `HSA_OVERRIDE_GFX_VERSION=10.3.0` (needed for gfx1031 cards like the 6700 XT / 6750 XT)
+
+Steps:
+
+```bash
+# install PyTorch for ROCm first (see pytorch.org), then the rest without torch-cluster
+pip install -r settings/requirements.txt
+export HSA_OVERRIDE_GFX_VERSION=10.3.0   # only for gfx1031 cards
+python scripts/inference_partcrafter.py --image_path assets/images/np3_2f6ab901c5a84ed6bbdf85a67b22a2ee.png --num_parts 3 --tag robot --render
+```
+
+A 4 part figure took about 10 minutes on the 6700 XT and fit in 12 GB. The fallback `fps` is a simple loop, so it is slower than the CUDA kernel, but it is a tiny part of the total time. If you hit a `Memory access fault by GPU` now and then, that is the ROCm override on a consumer card, not PartCrafter; running it again usually works.
+
 ## 📊 Dataset
 Please refer to [Dataset README](./datasets/README.md) to download and preprocess the dataset. To generate a minimal dataset, you can run:
 ```
