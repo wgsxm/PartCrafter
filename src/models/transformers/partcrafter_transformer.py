@@ -678,7 +678,9 @@ class PartCrafterDiTModel(ModelMixin, ConfigMixin, PeftAdapterMixin):
                     part_embeddings.append(part_embedding)
                 part_embedding = torch.cat(part_embeddings, dim=0) # (N, D)
             elif isinstance(num_parts, int):
-                part_embedding = self.part_embedding(torch.arange(hidden_states.shape[0], device=hidden_states.device)) # (N, D)
+                # batch is doubled under CFG, repeat 0..N-1 for each half
+                part_idx = torch.arange(hidden_states.shape[0], device=hidden_states.device) % num_parts
+                part_embedding = self.part_embedding(part_idx) # (N, D)
             else:
                 raise ValueError(
                     "num_parts must be a torch.Tensor or int, but got {}".format(type(num_parts))
